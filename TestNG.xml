@@ -3,6 +3,9 @@
 
 
 <suite name="Verisk_Automation">
+    <listeners>
+        <listener class-name="utilities.Reporting"/>
+    </listeners>
     <test name ="saucedemo Test">
         <parameter name="browser" value="chrome">
             <classes>
