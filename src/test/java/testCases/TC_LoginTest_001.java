@@ -127,6 +127,36 @@ public class TC_LoginTest_001 extends BaseClass {
             System.out.println("Error message not asserted");
         }
     }
+    @Test(priority = 8)
+    public void fillTheFormAndToVerifyCheckOutComplete() throws InterruptedException {
+        webDriver.findElement(By.id("first-name")).sendKeys("Suraj");
+        webDriver.findElement(By.id("last-name")).sendKeys("Gupta");
+        webDriver.findElement(By.id("postal-code")).sendKeys("33000");
+        webDriver.findElement(By.id("continue")).click();
+        webDriver.findElement(By.id("finish")).click();
+        String message=webDriver.findElement(By.xpath("//span[@class='title']")).getText();
+        if(message.equals("Checkout: Complete!")){
+            System.out.println("Check Out Complete");
+        }else{
+            System.out.println("CheckOut in complete");
+        }
+        Thread.sleep(2000);
+    }
+
+    @Test(priority = 9)
+    public void toLogoutAndVerifyLoginPage() throws InterruptedException {
+        webDriver.findElement(By.id("react-burger-menu-btn")).click();
+        System.out.println("Logging Out of Site");
+        webDriver.findElement(By.id("logout_sidebar_link")).click();
+        System.out.println("Logged Out");
+        List<WebElement> verify=webDriver.findElements(By.xpath("//input[@id='login-button']"));
+        if(verify.size()==1){
+            System.out.println("We came to Login page");
+        }else{
+            System.out.println("Error after Logout");
+        }
+        Thread.sleep(2000);
+    }
 
 
 }
