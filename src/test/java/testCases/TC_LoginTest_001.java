@@ -30,14 +30,14 @@ public class TC_LoginTest_001 extends BaseClass {
             Assert.assertTrue(false);
             System.out.println("Logging Test failed");
         }
-        Thread.sleep(5000);
+        Thread.sleep(2000);
     }
 
     @Test(priority = 2)
     public void addToCart() throws InterruptedException {
         System.out.println("Adding Item to cart");
         webDriver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
     }
 
@@ -61,7 +61,7 @@ public class TC_LoginTest_001 extends BaseClass {
 
         //build()- used to compile all the actions into a single step
         actions.click().build().perform();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
         String itemDescription = webDriver.findElement(By.xpath("//div[@class='inventory_item_desc']")).getText();
         if (itemDescription.equals("carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.")) {
@@ -71,7 +71,7 @@ public class TC_LoginTest_001 extends BaseClass {
             System.out.println("Not an Item description of Sauce Labs Backpack");
             Assert.assertTrue(false);
         }
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
 
     }
@@ -97,7 +97,7 @@ public class TC_LoginTest_001 extends BaseClass {
         webDriver.findElement(By.id("continue-shopping")).click();
         System.out.println("Adding Another Item to cart");
         webDriver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         System.out.println("Item Added");
 
     }
