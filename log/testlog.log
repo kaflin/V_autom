@@ -1,0 +1,36 @@
+2022-12-25 09:52:30,038 - Saucedemo -INFO - URL is opened
+2022-12-25 09:52:30,217 - Saucedemo -INFO - Entered Username
+2022-12-25 09:52:30,332 - Saucedemo -INFO - Entered password
+2022-12-25 09:52:30,581 - Saucedemo -INFO - Logging Test passed
+2022-12-25 09:52:32,596 - Saucedemo -INFO - 
+
+2022-12-25 09:52:32,597 - Saucedemo -INFO - Adding Sauce Labs Backpack to cart
+2022-12-25 09:52:34,765 - Saucedemo -INFO - 
+
+2022-12-25 09:52:34,766 - Saucedemo -INFO - Asserting the quantity and Item Description
+2022-12-25 09:52:34,801 - Saucedemo -INFO - Only one item added to cart
+2022-12-25 09:52:34,801 - Saucedemo -INFO - Clicking on Cart for item Description
+2022-12-25 09:52:36,987 - Saucedemo -INFO - Item description of Sauce Labs Backpack
+2022-12-25 09:52:38,989 - Saucedemo -INFO - 
+
+2022-12-25 09:52:38,989 - Saucedemo -INFO - Removing the Element from cart
+2022-12-25 09:52:39,137 - Saucedemo -INFO - Item Removed
+2022-12-25 09:52:41,157 - Saucedemo -INFO - Cart is empty
+2022-12-25 09:52:43,160 - Saucedemo -INFO - 
+
+2022-12-25 09:52:43,557 - Saucedemo -INFO - Adding Another Item to cart
+2022-12-25 09:52:45,841 - Saucedemo -INFO - Item Added
+2022-12-25 09:52:45,843 - Saucedemo -INFO - 
+
+2022-12-25 09:52:48,162 - Saucedemo -INFO - Checked out
+2022-12-25 09:52:48,169 - Saucedemo -INFO - 
+
+2022-12-25 09:52:48,313 - Saucedemo -INFO - Error message asserted
+2022-12-25 09:52:48,314 - Saucedemo -INFO - 
+
+2022-12-25 09:52:49,339 - Saucedemo -INFO - CheckOut Complete
+2022-12-25 09:52:51,341 - Saucedemo -INFO - 
+
+2022-12-25 09:52:51,402 - Saucedemo -INFO - Logging Out of Site
+2022-12-25 09:52:53,545 - Saucedemo -INFO - Logged Out
+2022-12-25 09:52:53,571 - Saucedemo -INFO - We came to Login page
