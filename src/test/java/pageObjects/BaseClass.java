@@ -1,4 +1,4 @@
-package testCases;
+package pageObjects;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -20,7 +20,7 @@ public class BaseClass {
     public String password = readConfig.getPassword();
     public static WebDriver webDriver;
     public static Logger logger;
-    Actions action;
+    public Actions action;
 
     @Parameters("browser")
     @BeforeClass
