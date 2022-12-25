@@ -1,5 +1,6 @@
 package testCases;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -58,7 +59,6 @@ public class TC_LoginTest_001 extends BaseClass {
         //To mouseover on cart
         action.moveToElement(cart).click().perform();
         Thread.sleep(2000);
-
         String itemDescription = webDriver.findElement(By.xpath("//div[@class='inventory_item_desc']")).getText();
         if (itemDescription.equals("carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.")) {
             logger.info("Item description of Sauce Labs Backpack");
@@ -73,7 +73,9 @@ public class TC_LoginTest_001 extends BaseClass {
     @Test(priority = 4)
     public void removeItemAndAssertToEmpty() throws InterruptedException {
         logger.info("Removing the Element from cart");
-        webDriver.findElement(By.id("remove-sauce-labs-backpack")).click();
+        WebElement element =webDriver.findElement(By.id("remove-sauce-labs-backpack"));
+        action = new Actions(webDriver);
+        action.moveToElement(element).click().perform();
         logger.info("Item Removed");
         Thread.sleep(2000);
         List<WebElement> quant = webDriver.findElements(By.xpath("//span[@class='shopping_cart_badge']"));
@@ -99,17 +101,14 @@ public class TC_LoginTest_001 extends BaseClass {
 
     @Test(priority = 6)
     public void checkOut() throws InterruptedException {
-        Actions actions = new Actions(webDriver);
+        action = new Actions(webDriver);
         WebElement cart = webDriver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
         //To mouseover on cart
-        actions.moveToElement(cart);
-
-        //build()- used to compile all the actions into a single step
-        actions.click().build().perform();
+        action.moveToElement(cart);
+        action.click().perform();
         Thread.sleep(2000);
         webDriver.findElement(By.id("checkout")).click();
         logger.info("Checked out");
-
     }
     @Test(priority = 7)
     public void clickOnContinue() {
@@ -126,9 +125,10 @@ public class TC_LoginTest_001 extends BaseClass {
 
     @Test(priority = 8)
     public void fillTheFormAndToVerifyCheckOutComplete() throws InterruptedException {
-        webDriver.findElement(By.id("first-name")).sendKeys("Suraj");
-        webDriver.findElement(By.id("last-name")).sendKeys("Gupta");
-        webDriver.findElement(By.id("postal-code")).sendKeys("33000");
+        Faker faker = new Faker();
+        webDriver.findElement(By.id("first-name")).sendKeys(faker.name().firstName());
+        webDriver.findElement(By.id("last-name")).sendKeys(faker.name().lastName());
+        webDriver.findElement(By.id("postal-code")).sendKeys(faker.address().zipCode());
         webDriver.findElement(By.id("continue")).click();
         webDriver.findElement(By.id("finish")).click();
         String message = webDriver.findElement(By.xpath("//span[@class='title']")).getText();

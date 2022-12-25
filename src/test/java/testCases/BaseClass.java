@@ -25,21 +25,16 @@ public class BaseClass {
     @Parameters("browser")
     @BeforeClass
     public void setup(@Optional("chrome") String br) {
-        logger = Logger.getLogger("Dallcon");
+        logger = Logger.getLogger("Saucedemo");
         PropertyConfigurator.configure("log4j.properties");
         if (br.equals("chrome")) {
-//            String driverPath="/home/suraj/Downloads/selenium/chromedriver_linux64/chromedriver";
-//            System.setProperty("webdriver.chrome.driver", driverPath);
-//            webDriver = new ChromeDriver();
             ChromeOptions options = new ChromeOptions();
             System.setProperty("webdriver.chrome.driver", readConfig.getChromePath());
             webDriver =new ChromeDriver(options);
             webDriver.manage().window().maximize();
         }
         webDriver.get(baseURL);
-
     }
-
     @AfterClass
     public void tearDown() {
         webDriver.quit();
