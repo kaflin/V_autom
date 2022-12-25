@@ -34,6 +34,7 @@ public class TC_LoginTest_001 extends BaseClass {
 
     @Test(priority = 2)
     public void addToCart() throws InterruptedException {
+        logger.info("\n");
         logger.info("Adding Sauce Labs Backpack to cart");
         WebElement element =webDriver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-backpack']"));
         action=new Actions(webDriver);
@@ -43,13 +44,14 @@ public class TC_LoginTest_001 extends BaseClass {
 
     @Test(priority = 3)
     public void assertQuantityAndItemDescription() throws InterruptedException {
+        logger.info("\n");
         logger.info("Asserting the quantity and Item Description");
         String quantity = webDriver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText();
         if (quantity.equals("1")) {
             logger.info("Only one item added to cart");
             Assert.assertTrue(true);
         } else {
-            logger.info("More the one item added to cart");
+            logger.info("More than one item added to cart");
             Assert.assertTrue(false);
         }
         logger.info("Clicking on Cart for item Description");
@@ -72,6 +74,7 @@ public class TC_LoginTest_001 extends BaseClass {
 
     @Test(priority = 4)
     public void removeItemAndAssertToEmpty() throws InterruptedException {
+        logger.info("\n");
         logger.info("Removing the Element from cart");
         WebElement element =webDriver.findElement(By.id("remove-sauce-labs-backpack"));
         action = new Actions(webDriver);
@@ -91,9 +94,14 @@ public class TC_LoginTest_001 extends BaseClass {
 
     @Test(priority = 5)
     public void addAnotherItemToCart() throws InterruptedException {
-        webDriver.findElement(By.id("continue-shopping")).click();
+        logger.info("\n");
+        WebElement element=webDriver.findElement(By.id("continue-shopping"));
+        action = new Actions(webDriver);
+        action.moveToElement(element).click().perform();
         logger.info("Adding Another Item to cart");
-        webDriver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
+        WebElement element_add=webDriver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)"));
+        action = new Actions(webDriver);
+        action.moveToElement(element_add).click().perform();
         Thread.sleep(2000);
         logger.info("Item Added");
 
@@ -101,17 +109,18 @@ public class TC_LoginTest_001 extends BaseClass {
 
     @Test(priority = 6)
     public void checkOut() throws InterruptedException {
+        logger.info("\n");
         action = new Actions(webDriver);
         WebElement cart = webDriver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
         //To mouseover on cart
-        action.moveToElement(cart);
-        action.click().perform();
+        action.moveToElement(cart).click().perform();
         Thread.sleep(2000);
         webDriver.findElement(By.id("checkout")).click();
         logger.info("Checked out");
     }
     @Test(priority = 7)
-    public void clickOnContinue() {
+    public void clickOnContinue() throws InterruptedException {
+        logger.info("\n");
         webDriver.findElement(By.id("continue")).click();
         String message = webDriver.findElement(By.xpath("//div[@class='error-message-container error']")).getText();
         if (message.equals("Error: First Name is required")) {
@@ -125,30 +134,34 @@ public class TC_LoginTest_001 extends BaseClass {
 
     @Test(priority = 8)
     public void fillTheFormAndToVerifyCheckOutComplete() throws InterruptedException {
+        logger.info("\n");
         Faker faker = new Faker();
         webDriver.findElement(By.id("first-name")).sendKeys(faker.name().firstName());
         webDriver.findElement(By.id("last-name")).sendKeys(faker.name().lastName());
         webDriver.findElement(By.id("postal-code")).sendKeys(faker.address().zipCode());
-        webDriver.findElement(By.id("continue")).click();
-        webDriver.findElement(By.id("finish")).click();
+        WebElement element=webDriver.findElement(By.id("continue"));
+        action.moveToElement(element).click().perform();
+        WebElement element_finish= webDriver.findElement(By.id("finish"));
+        action.moveToElement(element_finish).click().perform();
         String message = webDriver.findElement(By.xpath("//span[@class='title']")).getText();
-        if (message.equals("Checkout: Complete!")) {
-            logger.info("Check Out Complete");
+        if (message.equalsIgnoreCase("Checkout: Complete!")) {
+            logger.info("CheckOut Complete");
         } else {
-            logger.info("CheckOut in complete");
+            logger.info("CheckOut InComplete");
         }
         Thread.sleep(2000);
     }
 
     @Test(priority = 9)
     public void toLogoutAndVerifyLoginPage() throws InterruptedException {
+        logger.info("\n");
         webDriver.findElement(By.id("react-burger-menu-btn")).click();
         logger.info("Logging Out of Site");
         Thread.sleep(2000);
-        webDriver.findElement(By.id("logout_sidebar_link")).click();
+        WebElement element=webDriver.findElement(By.id("logout_sidebar_link"));
+        action.moveToElement(element).click().perform();
         logger.info("Logged Out");
         List<WebElement> verify = webDriver.findElements(By.xpath("//input[@id='login-button']"));
-        logger.info(verify.size());
         if (verify.size() == 1) {
             logger.info("We came to Login page");
         } else {
